@@ -17,17 +17,3 @@ Maven
 Docker (for building and running container images)
 Trivy (for scanning Docker images)
 
-# Project-structure
-
-company-project-java-codebase/
-│
-├── src/
-│   ├── main/
-│   │   └── java/
-│   │       └── com/company/project/MainApp.java
-│   └── test/
-│       └── java/
-│           └── com/company/project/MainAppTest.java
-│
-├── pom.xml
-└── README.md
