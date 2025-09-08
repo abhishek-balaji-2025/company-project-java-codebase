@@ -7,6 +7,7 @@
     <groupId>com.company.project</groupId>
     <artifactId>company-project-java-codebase</artifactId>
     <version>1.0.0</version>
+    <packaging>war</packaging> <!-- 👈 WAR packaging -->
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -24,6 +25,7 @@
     </dependencies>
 
     <build>
+        <finalName>sampleapp</finalName> <!-- 👈 Output file: sampleapp.war -->
         <plugins>
             <!-- Java Compiler -->
             <plugin>
@@ -35,6 +37,17 @@
                     <target>17</target>
                 </configuration>
             </plugin>
+
+            <!-- WAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
+
