@@ -75,15 +75,22 @@ pipeline {
             steps {
                 sh 'echo "logging into dockerhub account"'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
-                    sh '''
-                           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                           sudo docker tag sampleapp:latest abhishekbalaji/practice:v1
-                           sudo docker push abhishekbalaji/practice:v1
-                           sudo docker logout
-                       '''
+                    sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
                 }
             }
         }
+
+        stage("docker-push-image") {
+            steps {
+                sh 'docker push abhishekbalaji/practice:v1'
+                  }
+             }
+ 
+        post {
+          always {
+             sh 'docker logout'
+          }
+       }
     }
 }
 
