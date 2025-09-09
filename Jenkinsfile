@@ -83,7 +83,7 @@ pipeline {
         stage("docker-push-image") {
             steps {
                 sh 'echo "pushing the tagged docker image"'
-                sh 'sudo docker push $DOCKER_USER/practice:v1'
+                sh 'sudo docker push abhishekbalaji/practice:v1'
             }
         }
 
