@@ -48,7 +48,7 @@ pipeline {
         stage("Docker-build-image") {
             steps {
                 sh 'echo "Building docker image"'
-                sh 'docker build -t sampleapp .'
+                sh 'sudo docker build -t sampleapp .'
                 sh 'echo "docker image built successfully"'
             }
         }
@@ -56,7 +56,7 @@ pipeline {
         stage("tag-docker-image") {
             steps {
                 sh 'echo "tagging docker image process begins..."'
-                sh 'docker tag sampleapp:latest abhishekbalaji/practice:v1'
+                sh 'sudo docker tag sampleapp:latest abhishekbalaji/practice:v1'
                 sh 'echo "docker image tagged successfully"'
             }
         }
@@ -83,14 +83,14 @@ pipeline {
         stage("docker-push-image") {
             steps {
                 sh 'echo "pushing the tagged docker image"'
-                sh 'docker push abhishekbalaji/practice:v1'
+                sh 'sudo docker push abhishekbalaji/practice:v1'
             }
         }
 
         stage("dockerhub-logout") {
             steps {
                 sh 'echo "logging out of dockerhub account"'
-                sh 'docker logout'
+                sh 'sudo docker logout'
             }
         }
     }
