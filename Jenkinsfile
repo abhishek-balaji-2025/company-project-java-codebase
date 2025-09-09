@@ -56,7 +56,7 @@ pipeline {
         stage("tag-docker-image") {
             steps {
                 sh 'echo "tagging docker image process begins..."'
-                sh 'docker tag sampleapp:latest abhishekbalaji/practice:v1'
+                sh 'sudo docker tag sampleapp:latest abhishekbalaji/practice:v1'
                 sh 'echo "docker image tagged successfully"'
             }
         }
