@@ -66,7 +66,7 @@ pipeline {
                 sh 'which trivy'
                 sh 'trivy --version'
                 sh 'echo "scanning docker image..."'
-                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekbalaji/practice:v1'
+                sh 'sudo trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekbalaji/practice:v1'
                 sh 'echo "image scanned successfully"'
             }
         }
@@ -75,21 +75,21 @@ pipeline {
             steps {
                 sh 'echo "logging into dockerhub account"'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
-                    sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
+                    sh 'echo "$DOCKER_PASS" | sudo docker login -u "$DOCKER_USER" --password-stdin'
                 }
             }
         }
 
         stage("docker-push-image") {
             steps {
-                sh 'docker push abhishekbalaji/practice:v1'
+                sh 'sudo docker push abhishekbalaji/practice:v1'
             }
         }
     }
 
     post {
         always {
-            sh 'docker logout'
+            sh 'sudo docker logout'
         }
     }
 }
