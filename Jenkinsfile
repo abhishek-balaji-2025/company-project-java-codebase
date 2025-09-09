@@ -56,7 +56,7 @@ pipeline {
         stage("tag-docker-image") {
             steps {
                 sh 'echo "tagging docker image process begins..."'
-                sh 'sudo docker tag sampleapp:latest $DOCKER_USER/practice:v1'
+                sh "sudo docker tag sampleapp:latest $DOCKER_USER/practice:v1"
                 sh 'echo "docker image tagged successfully"'
             }
         }
@@ -75,7 +75,7 @@ pipeline {
                 sh 'which trivy'
                 sh 'trivy --version'
                 sh 'echo "scanning docker image..."'
-                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL $DOCKER_USER/practice:v1'
+                sh "trivy image --exit-code 1 --severity HIGH,CRITICAL $DOCKER_USER/practice:v1"
                 sh 'echo "image scanned successfully"'
             }
         }
@@ -83,7 +83,7 @@ pipeline {
         stage("docker-push-image") {
             steps {
                 sh 'echo "pushing the tagged docker image"'
-                sh 'sudo docker push $DOCKER_USER/practice:v1'
+                sh "sudo docker push $DOCKER_USER/practice:v1"
             }
         }
 
