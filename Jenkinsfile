@@ -48,7 +48,7 @@ pipeline {
         stage("Docker-build-image") {
             steps {
                 sh 'echo "Building docker image"'
-                sh 'docker buildx build -t sampleapp .'
+                sh 'docker build -t sampleapp .'
                 sh 'echo "docker image built successfully"'
             }
         }
