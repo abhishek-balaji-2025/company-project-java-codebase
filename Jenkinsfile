@@ -13,35 +13,35 @@ pipeline {
         stage("Validate-the-code") {
             steps {
                 sh 'echo "validation process running..."'
-                sh '/usr/share/maven/mvn validate'
+                sh 'mvn validate'
             }
         }
 
         stage("Compile-the-code") {
             steps {
                 sh 'echo "compilation process running"'
-                sh '/usr/share/maven/mvn compile'
+                sh 'mvn compile'
             }
         }
 
         stage("Testing-of-code") {
             steps {
                 sh 'echo "testing process running..."'
-                sh '/usr/share/maven/mvn test'
+                sh 'mvn test'
             }
         }
 
         stage("Package-the-code") {
             steps {
                 sh 'echo "packaging the code"'
-                sh '/usr/share/maven/mvn package'
+                sh 'mvn package'
             }
         }
 
         stage("Verify") {
             steps {
                 sh 'echo "verification process running"'
-                sh '/usr/share/maven/mvn verify'
+                sh 'mvn verify'
             }
         }
 
