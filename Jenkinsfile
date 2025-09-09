@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage("Checkout code") {  
             steps {
-                git changelog: false, poll: false, url: 'https://github.com/abhishek-balaji-2025/company-project-java-codebase.git'
+                git branch: 'main', changelog: false, poll: false, url: 'https://github.com/abhishek-balaji-2025/company-project-java-codebase.git'
             }
         }
 
