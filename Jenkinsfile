@@ -48,7 +48,7 @@ pipeline {
         stage("Docker-build-image") {
             steps {
                 sh 'echo "Building docker image"'
-                sh 'docker build -t sampleapp .'
+                sh 'docker buildx build -t sampleapp .'
                 sh 'echo "docker image built successfully"'
             }
         }
@@ -72,8 +72,10 @@ pipeline {
 
         stage("trivy-docker-image-scan"){
             steps {
+                sh 'which trivy'
+                sh 'trivy --version'
                 sh 'echo "scanning docker image..."'
-                sh '/usr/bin/trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekbalaji/practice:v1'
+                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekbalaji/practice:v1'
                 sh 'echo "image scanned successfully"'
             }
         }
