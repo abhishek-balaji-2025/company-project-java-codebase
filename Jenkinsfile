@@ -61,15 +61,6 @@ pipeline {
             }
         }
 
-        stage("DockerHub-login") {
-            steps {
-                sh 'echo "logging into dockerhub account"'
-                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
-                    sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
-                }
-            }
-        }
-
         stage("trivy-docker-image-scan"){
             steps {
                 sh 'which trivy'
@@ -80,17 +71,17 @@ pipeline {
             }
         }
 
-        stage("docker-push-image") {
+        stage("DockerHub-login") {
             steps {
-                sh 'echo "pushing the tagged docker image"'
-                sh 'sudo docker push abhishekbalaji/practice:v1'
-            }
-        }
-
-        stage("dockerhub-logout") {
-            steps {
-                sh 'echo "logging out of dockerhub account"'
-                sh 'sudo docker logout'
+                sh 'echo "logging into dockerhub account"'
+                withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+                    sh '''
+                           echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
+                           sudo docker tag sampleapp:latest abhishekbalaji/practice:v1
+                           sudo docker push abhishekbalaji/practice:v1
+                           sudo docker logout
+                       '''
+                }
             }
         }
     }
