@@ -1,5 +1,5 @@
 # Use the offical tomcat version with java 17
-FROM tomcat:10.1-openjdk17-temporal
+FROM tomcat:10.1-jdk17-temurin
 
 # Remove everything to avoid clutter
 RUN rm -rf /usr/local/tomcat/webapps/*
