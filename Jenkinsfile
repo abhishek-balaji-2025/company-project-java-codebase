@@ -61,7 +61,7 @@ pipeline {
             }
         }
 
-        stage("trivy-docker-image-scan"){
+        stage("trivy-docker-image-scan") {
             steps {
                 sh 'which trivy'
                 sh 'trivy --version'
@@ -83,14 +83,14 @@ pipeline {
         stage("docker-push-image") {
             steps {
                 sh 'docker push abhishekbalaji/practice:v1'
-                  }
-             }
- 
+            }
+        }
+    }
+
     post {
-       always {
+        always {
             sh 'docker logout'
-              }
-         }
+        }
     }
 }
 
