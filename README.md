@@ -77,7 +77,7 @@ This project is a portfolio-grade DevOps automation workflow — valuable for re
 
 # CI-Pipeline architecture
 
-![ci-pipeline](/assets/CI-pipeline.gif)
+![ci-pipeline](/assets/CI-pipeline.webm)
 
 # Note: Refer another repository for CD pipeline
 
