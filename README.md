@@ -72,3 +72,5 @@ Use Docker Hub (or any registry) as the single source of truth for images.
 Apply Kubernetes best practices (ClusterIP for services, Ingress for routing).
 Secure secrets and kubeconfig in Jenkins credentials.
 This project is a portfolio-grade DevOps automation workflow — valuable for resumes, interviews, and real deployments.
+
+![ci-pipeline-demo](/assets/ci-pipeline-demo.gif)
