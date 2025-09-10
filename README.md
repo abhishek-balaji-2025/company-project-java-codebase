@@ -74,3 +74,10 @@ Secure secrets and kubeconfig in Jenkins credentials.
 This project is a portfolio-grade DevOps automation workflow — valuable for resumes, interviews, and real deployments.
 
 ![ci-pipeline-demo](/assets/ci-pipeline-demo.gif)
+
+# CI-Pipeline architecture
+
+![ci-pipeline](/assets/CI-pipeline.gif)
+
+# Note: Refer another repository for CD pipeline
+
