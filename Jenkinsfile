@@ -48,7 +48,7 @@ pipeline {
         stage("Docker-build-image") {
             steps {
                 sh 'echo "Building docker image"'
-                sh 'sudo docker build -t sampleapp .'
+                sh 'docker build -t sampleapp .'
                 sh 'echo "docker image built successfully"'
             }
         }
@@ -56,7 +56,7 @@ pipeline {
         stage("tag-docker-image") {
             steps {
                 sh 'echo "tagging docker image process begins..."'
-                sh 'sudo docker tag sampleapp:latest abhishekbalaji/practice:v1'
+                sh 'docker tag sampleapp:latest abhishekbalaji/practice:v1'
                 sh 'echo "docker image tagged successfully"'
             }
         }
@@ -66,7 +66,7 @@ pipeline {
                 sh 'which trivy'
                 sh 'trivy --version'
                 sh 'echo "scanning docker image..."'
-                sh 'sudo trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekbalaji/practice:v1'
+                sh 'trivy image --exit-code 1 --severity HIGH,CRITICAL abhishekbalaji/practice:v1'
                 sh 'echo "image scanned successfully"'
             }
         }
@@ -75,21 +75,21 @@ pipeline {
             steps {
                 sh 'echo "logging into dockerhub account"'
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-cred', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
-                    sh 'echo "$DOCKER_PASS" | sudo docker login -u "$DOCKER_USER" --password-stdin'
+                    sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
                 }
             }
         }
 
         stage("docker-push-image") {
             steps {
-                sh 'sudo docker push abhishekbalaji/practice:v1'
+                sh 'docker push abhishekbalaji/practice:v1'
             }
         }
     }
 
     post {
         always {
-            sh 'sudo docker logout'
+            sh 'docker logout'
         }
     }
 }

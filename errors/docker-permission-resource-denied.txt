@@ -1,19 +1,19 @@
-If your Jenkins agent on the slave node is running as the ubuntu user (which is common on AWS EC2 Ubuntu servers).
+# If your Jenkins agent on the slave node is running as the ubuntu user (which is common on AWS EC2 Ubuntu servers).
 
-Here’s the exact process:
+# Here’s the exact process:
 
-Run the command on the slave node:
+# Run the command on the slave node:
 sudo usermod -aG docker ubuntu
 
-Reboot the slave node (or log out and back in) so group changes take effect:
+# Reboot the slave node (or log out and back in) so group changes take effect:
 sudo reboot
 
-Verify membership after reboot:
-groups ubuntu
+# Verify membership after reboot:
+getent group
 
-You should see docker in the list.
+# You should see docker in the list.
 
-Test Docker without sudo:
+# Test Docker without sudo:
 docker ps
 
-If you see running containers (or an empty list without errors), the fix worked.
+# If you see running containers (or an empty list without errors), the fix worked.
