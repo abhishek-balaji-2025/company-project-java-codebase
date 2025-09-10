@@ -10,7 +10,7 @@ sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sou
 sudo apt install jenkins -y
 
 # sudo systemctl start jenkins
-sudo systemctl enable jenkins
+# sudo systemctl enable jenkins
 
 # Note: Make sure to open the port 8080 in the security group
 
